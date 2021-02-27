@@ -12,6 +12,8 @@ Servo left;
 //4 cm - 151.18112140865 PX
 // i.e changes x position by 
 int pos = 0;
+int x = 50;
+int y = 0;
  //arbitrary can change coordinates,
  //arbitrary can change coordinates
   int OFFSET1 = 115;
@@ -140,8 +142,8 @@ moveUp(10);
 void moveRight(int steps){
   //Movement is 5 cm, movement right, minimal movement in y direction
   
-  thetaRight = atan((coordinatesLoop.y)/(coordinatesLoop.x));
-  thetaLeft = thetaRight*(5/6);
+ coordinatesLoop.thetaRight = atan((coordinatesLoop.y)/(coordinatesLoop.x));
+   coordinatesLoop.thetaLeft = coordinatesLoop.thetaRight*(5/6);
   coordinatesLoop.prevX = coordinatesLoop.x;
   coordinatesLoop.x += 189*steps; //calculation of 4 cm into pixels
   coordinatesLoop.y += 0;
@@ -153,8 +155,8 @@ void moveRight(int steps){
 
 
 void moveLeft(int steps){
-  thetaLeft = atan((coordinatesLoop.y)/(coordinatesLoop.x));
-    thetaRight = 2/3 * (thetaLeft);
+  coordinatesLoop.thetaLeft = atan((coordinatesLoop.y)/(coordinatesLoop.x));
+    coordinatesLoop.thetaRight =  2/3 * (coordinatesLoop.thetaLeft);
     coordinatesLoop.prevX = coordinatesLoop.x;
     coordinatesLoop.x += 151*steps;
     coordinatesLoop.y += 0;
@@ -165,8 +167,8 @@ void moveLeft(int steps){
 }
 
 void moveBack(int steps){
-    thetaLeft = atan((coordinatesLoop.y)/(coordinatesLoop.x));
-    thetaRight = thetaLeft;
+    coordinatesLoop.thetaLeft = atan((coordinatesLoop.y)/(coordinatesLoop.x));
+    coordinatesLoop.thetaRight = coordinatesLoop.thetaLeft;
     coordinatesLoop.prevX = coordinatesLoop.x;
     coordinatesLoop.prevY = coordinatesLoop.y;
     coordinatesLoop.y += 75*steps;
@@ -176,8 +178,8 @@ void moveBack(int steps){
 }
 
 void moveUp(int steps){
-    thetaLeft = atan((coordinatesLoop.y)/(coordinatesLoop.x));
-    thetaRight = thetaLeft;
+    coordinatesLoop.thetaLeft = atan((coordinatesLoop.y)/(coordinatesLoop.x));
+    coordinatesLoop.thetaRight = coordinatesLoop.thetaLeft;
     coordinatesLoop.prevX = coordinatesLoop.x;
     coordinatesLoop.prevY = coordinatesLoop.y;
     coordinatesLoop.y -= 75*steps;
